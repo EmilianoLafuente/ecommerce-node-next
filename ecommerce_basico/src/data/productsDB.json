@@ -44,7 +44,10 @@
     "rim": 16,
     "price": 120,
     "stock": 2,
-    "active": true
+    "active": true,
+    "images": [
+      "/products/1767827908763/1.jpg"
+    ]
   },
   {
     "id": 1767875334647,

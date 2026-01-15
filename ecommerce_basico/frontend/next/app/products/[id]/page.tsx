@@ -1,37 +1,57 @@
-// app/products/[id]/page.tsx
-
+import Container from '@/components/layout/Container'
 import { getProductById } from '@/services/products.service'
-import { notFound } from 'next/navigation'
+import AddToCartButton from '@/components/AddToCartButton'
 
 type Props = {
-  params: {
+  params: Promise<{
     id: string
-  }
+  }>
 }
 
-export default async function ProductPage({ params }: Props) {
-  const { id } = await params
-  const numericId = Number(id)
+export default async function ProductDetailPage({ params }: Props) {
+  const { id } = await params   // 👈 CLAVE
+  const product = await getProductById(Number(id))
 
-  if (Number.isNaN(numericId)) {
-    notFound()
-  }
+  return (
+    <Container>
+      <div className="product-detail">
+        <div className="product-detail-image">
+          {product.images?.length > 0 && (
+            <img
+              src={product.images[0]}
+              alt={`${product.brand} ${product.model}`}
+            />
+          )}
+        </div>
 
-  try {
-    const product = await getProductById(numericId)
+        <div className="product-detail-info">
+          <h1>{product.brand} {product.model}</h1>
 
-    return (
-      <main style={{ padding: '2rem' }}>
-        <h1>{product.title}</h1>
+          <p className="product-detail-measure">
+            Medida: {product.width}/{product.profile} R{product.rim}
+          </p>
 
-        <p>{product.description}</p>
+          <p className="product-detail-price">
+            ${product.price}
+          </p>
 
-        <strong>Precio: ${product.price}</strong>
+          <p className="product-detail-stock">
+            Stock disponible: {product.stock}
+          </p>
 
-        <div>Stock disponible: {product.stock}</div>
-      </main>
-    )
-  } catch {
-    notFound()
-  }
+          <AddToCartButton
+            maxStock={product.stock}
+            item={{
+              productId: product.id,
+              brand: product.brand,
+              model: product.model,
+              price: product.price,
+              quantity: 1,
+              image: product.images?.[0]
+            }}
+          />
+        </div>
+      </div>
+    </Container>
+  )
 }
