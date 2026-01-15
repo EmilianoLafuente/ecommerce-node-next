@@ -7,7 +7,7 @@
     "profile": 55,
     "rim": 17,
     "price": 160,
-    "stock": 1,
+    "stock": 9,
     "active": true,
     "images": [
       "/products/1767815905109/1.webp"
@@ -21,8 +21,8 @@
     "profile": 55,
     "rim": 16,
     "price": 150,
-    "stock": 0,
-    "active": false
+    "stock": 19,
+    "active": true
   },
   {
     "id": 1767827875608,
@@ -43,8 +43,8 @@
     "profile": 55,
     "rim": 16,
     "price": 120,
-    "stock": 2,
-    "active": true,
+    "stock": 10,
+    "active": false,
     "images": [
       "/products/1767827908763/1.jpg"
     ]

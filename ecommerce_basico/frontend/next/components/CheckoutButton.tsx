@@ -3,12 +3,14 @@
 import { useState } from 'react'
 import { useCart } from '@/cart/CartContext'
 import { createOrder } from '@/services/orders.service'
+import { useRouter } from 'next/navigation'
 
 export default function CheckoutButton() {
   const { state, clearCart } = useCart()
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [success, setSuccess] = useState(false)
+  const router = useRouter()
 
   const handleCheckout = async () => {
     setLoading(true)
@@ -30,23 +32,29 @@ export default function CheckoutButton() {
 
       clearCart()
       setSuccess(true)
+      router.push('/checkout/success')
     } catch (err: any) {
-      setError('No se pudo completar la compra. Verificá stock.')
+      setError('No se pudo completar la compra. Verificá el stock disponible.')
     } finally {
       setLoading(false)
     }
   }
 
-  return (
-    <div style={{ marginTop: '1rem' }}>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+    return (
+      <>
+        {error && (
+          <div className="cart-error">
+            {error}
+          </div>
+        )}
 
-      <button
-        onClick={handleCheckout}
-        disabled={loading || state.items.length === 0}
-      >
-        {loading ? 'Procesando...' : 'Confirmar compra'}
-      </button>
-    </div>
-  )
+        <button
+          className="checkout-button"
+          onClick={handleCheckout}
+          disabled={loading}
+        >
+          {loading ? 'Procesando...' : 'Confirmar compra'}
+        </button>
+      </>
+    )
 }
