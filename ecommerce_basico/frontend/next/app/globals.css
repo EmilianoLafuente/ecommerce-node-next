@@ -382,3 +382,40 @@ body {
 .checkout-link:hover {
   background: #000;
 }
+
+.product-search {
+  margin: 1.5rem 0;
+}
+
+.product-search input {
+  width: 100%;
+  max-width: 400px;
+  padding: 0.65rem 0.75rem;
+  font-size: 0.95rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.product-search input:focus {
+  outline: none;
+  border-color: #111;
+}
+
+.product-filters {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.product-filters select {
+  padding: 0.5rem 0.6rem;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 0.9rem;
+}
+
+.product-filters select:focus {
+  outline: none;
+  border-color: #111;
+}

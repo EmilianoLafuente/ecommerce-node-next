@@ -22,7 +22,10 @@
     "rim": 16,
     "price": 150,
     "stock": 19,
-    "active": true
+    "active": true,
+    "images": [
+      "/products/1767827861670/1.webp"
+    ]
   },
   {
     "id": 1767827875608,
@@ -33,7 +36,10 @@
     "rim": 17,
     "price": 190,
     "stock": 1,
-    "active": true
+    "active": true,
+    "images": [
+      "/products/1767827875608/1.webp"
+    ]
   },
   {
     "id": 1767827908763,
@@ -44,7 +50,7 @@
     "rim": 16,
     "price": 120,
     "stock": 10,
-    "active": false,
+    "active": true,
     "images": [
       "/products/1767827908763/1.jpg"
     ]
@@ -58,7 +64,10 @@
     "rim": 16,
     "price": 150,
     "stock": 6,
-    "active": true
+    "active": true,
+    "images": [
+      "/products/1767875334647/1.webp"
+    ]
   },
   {
     "id": 1767879774869,
@@ -69,6 +78,9 @@
     "rim": 16,
     "price": 180,
     "stock": 9,
-    "active": true
+    "active": true,
+    "images": [
+      "/products/1767879774869/1.webp"
+    ]
   }
 ]
