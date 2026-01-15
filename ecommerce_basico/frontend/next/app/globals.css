@@ -419,3 +419,29 @@ body {
   outline: none;
   border-color: #111;
 }
+
+.pagination {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.pagination button {
+  padding: 0.4rem 0.7rem;
+  border: 1px solid #ddd;
+  background: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.pagination button.active {
+  background: #111;
+  color: #fff;
+  border-color: #111;
+}
+
+.pagination button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}

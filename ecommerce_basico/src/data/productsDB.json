@@ -35,8 +35,8 @@
     "profile": 65,
     "rim": 17,
     "price": 190,
-    "stock": 1,
-    "active": true,
+    "stock": 0,
+    "active": false,
     "images": [
       "/products/1767827875608/1.webp"
     ]
