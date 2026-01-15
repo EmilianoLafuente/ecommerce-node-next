@@ -1,32 +1,26 @@
 'use client'
 
-import { useCart } from '@/cart/CartContext'
+import Container from '@/components/layout/Container'
 import CartSummary from '@/components/CartSummary'
+import CartTotals from '@/components/cart/CartTotals'
+import CheckoutButton from '@/components/CheckoutButton'
 
 export default function CartPage() {
-  const { state } = useCart()
-
-  if (state.checkoutSuccess) {
-    return (
-      <main style={{ padding: '2rem' }}>
-        <h1>Carrito</h1>
-        <p>✅ Compra realizada con éxito</p>
-      </main>
-    )
-  }
-
-  if (state.items.length === 0) {
-    return (
-      <main style={{ padding: '2rem' }}>
-        <h1>Carrito</h1>
-        <p>El carrito está vacío.</p>
-      </main>
-    )
-  }
-
   return (
-    <main style={{ padding: '2rem' }}>
-      <CartSummary />
-    </main>
+    <Container>
+      <h1 className="page-title">Carrito</h1>
+
+      <div className="cart-layout">
+        <div className="cart-items">
+          <CartSummary />
+        </div>
+
+        <div className="cart-checkout">
+          <h3>Resumen</h3>
+          <CartTotals />
+          <CheckoutButton />
+        </div>
+      </div>
+    </Container>
   )
 }

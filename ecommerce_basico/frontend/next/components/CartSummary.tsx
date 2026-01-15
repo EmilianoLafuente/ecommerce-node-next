@@ -1,8 +1,6 @@
 'use client'
 
 import { useCart } from '@/cart/CartContext'
-import CheckoutButton from '@/components/CheckoutButton'
-
 
 export default function CartSummary() {
   const {
@@ -12,66 +10,63 @@ export default function CartSummary() {
     clearCart
   } = useCart()
 
-  const total = state.items.reduce(
-    (sum, item) => sum + item.price * item.quantity,
-    0
-  )
-
   if (state.items.length === 0) {
     return <p>El carrito está vacío.</p>
   }
 
   return (
     <section>
-      <h1>Carrito</h1>
-
       <ul>
         {state.items.map(item => (
-          <li key={item.productId} style={{ marginBottom: '1rem' }}>
-            <strong>
-              {item.brand} {item.model}
-            </strong>
-
-            <div>
-              Precio: ${item.price}
-            </div>
-
-            <div>
-              Cantidad:{' '}
-              <input
-                type="number"
-                min={1}
-                value={item.quantity}
-                onChange={e =>
-                  updateQuantity(
-                    item.productId,
-                    Number(e.target.value)
-                  )
-                }
-                style={{ width: '60px' }}
+          <li key={item.productId} className="cart-item">
+            {item.image && (
+              <img
+                src={item.image}
+                alt={`${item.brand} ${item.model}`}
               />
-            </div>
+            )}
 
-            <button
-              onClick={() => removeItem(item.productId)}
-            >
-              Eliminar
-            </button>
+            <div className="cart-item-info">
+              <strong>
+                {item.brand} {item.model}
+              </strong>
+
+              <div className="cart-item-price">
+                ${item.price}
+              </div>
+
+              <div className="cart-item-qty">
+                Cantidad:{' '}
+                <input
+                  type="number"
+                  min={1}
+                  value={item.quantity}
+                  onChange={e =>
+                    updateQuantity(
+                      item.productId,
+                      Number(e.target.value)
+                    )
+                  }
+                />
+              </div>
+
+              <button
+                className="cart-item-remove"
+                onClick={() => removeItem(item.productId)}
+              >
+                Eliminar
+              </button>
+            </div>
           </li>
         ))}
       </ul>
 
-      <hr />
-
-      <h2>Total: ${total}</h2>
-
-      <button onClick={clearCart}>
+      <button
+        className="cart-clear"
+        onClick={clearCart}
+      >
         Vaciar carrito
       </button>
-
-      {/* Intenta crear orden y hace verificaciones */}
-      <CheckoutButton />
     </section>
-    
   )
 }
