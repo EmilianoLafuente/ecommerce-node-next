@@ -1,15 +1,16 @@
 import Link from 'next/link'
+import CartIndicator from '@/components/cart/CartIndicator'
 
 export default function Header() {
   return (
-    <header className="header">
-      <div className="header-inner">
-        <Link href="/">
-          <strong>Ecommerce</strong>
+    <header className="site-header">
+      <div className="header-container">
+        <Link href="/" className="logo">
+          Ecommerce
         </Link>
 
-        <nav>
-          <Link href="/cart">Carrito</Link>
+        <nav className="header-actions">
+          <CartIndicator />
         </nav>
       </div>
     </header>
