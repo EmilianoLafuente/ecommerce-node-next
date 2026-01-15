@@ -1,0 +1,12 @@
+🎯 Objetivo del ADMIN
+
+El admin debe permitir:
+
+📋 Listar productos
+➕ Crear productos
+✏️ Editar productos
+🗑 Eliminar productos
+
+🔄 Refrescar desde backend real (JSON)
+
+Todo usando tus API functions (fetch al backend).

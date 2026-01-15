@@ -1,0 +1,178 @@
+🧠 Qué significa realmente “crear funciones API”
+
+Cuando hablamos de funciones API en el frontend (o en otro sistema), en realidad hablamos de:
+
+Funciones cliente que hablan con una API remota usando HTTP
+
+No crean la API.
+👉 La consumen.
+
+📌 Diferenciemos 3 cosas (muy importante)
+1️⃣ La API
+
+Es el contrato que expone un sistema:
+
+GET    /products
+POST   /products
+PUT    /products/:id
+DELETE /products/:id
+
+
+Eso ya lo hiciste 👉 vos creaste una API.
+
+2️⃣ El servidor
+
+Es quien:
+
+recibe requests
+valida
+ejecuta lógica
+responde
+
+Eso es tu server.js + productService.js.
+
+3️⃣ Las funciones API (cliente)
+
+Son helpers que encapsulan llamadas HTTP:
+
+apiGetProducts()
+apiCreateProduct(product)
+apiUpdateProduct(id, data)
+
+
+👉 Esto NO es backend, es cliente de API.
+
+🧩 Por qué NO llamás fetch por todos lados
+
+Podrías hacer esto:
+
+fetch('/products')
+fetch('/products')
+fetch('/products')
+
+
+❌ Eso es desordenado
+❌ Difícil de mantener
+❌ Difícil de cambiar
+
+En sistemas reales no se hace así.
+
+✅ En cambio, se hace esto
+async function apiGetProducts() {
+  const res = await fetch('/products')
+  return res.json()
+}
+
+
+Y después:
+
+const products = await apiGetProducts()
+
+
+👉 Una sola responsabilidad
+👉 Un solo lugar para cambiar
+
+🧠 Qué es una “capa API” (concepto clave)
+
+Las funciones API forman una capa de comunicación.
+
+UI (botones, forms)
+   ↓
+Funciones API (fetch)
+   ↓
+API HTTP
+   ↓
+Backend
+
+
+📌 La UI no sabe cómo se llama el endpoint
+📌 La UI no sabe si es GET o POST
+📌 La UI solo llama funciones
+
+Eso es diseño profesional.
+
+🧱 Ejemplo claro (como lo hiciste, pero ahora lo entendés)
+📄 frontend/api/products.js (conceptual)
+export async function getProducts() {
+  const res = await fetch('/products')
+  return res.json()
+}
+
+export async function createProduct(product) {
+  const res = await fetch('/products', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(product)
+  })
+  return res.json()
+}
+
+
+Después, en la UI:
+
+const products = await getProducts()
+
+
+👉 La UI no sabe HTTP
+👉 La API no sabe UI
+
+🔥 Esto es EXACTAMENTE lo que vas a hacer en tu trabajo
+
+Cuando decís:
+
+“Dentro de no mucho debo desarrollar una API para otro sistema”
+
+Eso implica dos lados:
+
+🟢 Lado A – Vos creás la API
+
+Ejemplo:
+
+un sistema viejo
+otro sistema necesita datos
+vos exponés endpoints
+Sistema externo → HTTP → tu API → lógica → DB
+
+
+Eso ya lo estás practicando ahora.
+
+🔵 Lado B – Vos consumís una API
+
+Ejemplo:
+
+tu sistema necesita datos de otro
+llamás endpoints externos
+Ahí vas a hacer exactamente lo mismo que ahora, pero cambiando la URL:
+
+fetch('https://api.empresa.com/orders')
+
+
+👉 Las funciones API cliente son las mismas.
+
+🧠 Regla de oro para tu carrera (guardala)
+
+Quien domina APIs, domina la integración entre sistemas
+
+Y eso:
+
+no depende de React
+no depende de Express
+no depende de frameworks
+
+Depende de:
+HTTP
+diseño
+separación de capas
+
+🧪 Qué ya sabés (aunque no lo veas)
+
+Con lo que hiciste, ya sabés:
+
+✔ Qué es una API
+✔ Qué es un endpoint
+✔ Qué es un cliente de API
+✔ Qué es un contrato
+✔ Cómo se integran sistemas
+✔ Dónde validar reglas
+
+Eso no es básico.

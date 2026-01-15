@@ -1,0 +1,34 @@
+me gustaria arrancar con el front, con card para cada articulo esta bien o es mucho ? 
+ChatGPT Plus
+
+
+🎯 Objetivo
+
+Implementar CRUD de productos sobre productsDB.json:
+
+✅ Create → crear producto
+
+✅ Read → listar / obtener producto
+
+✅ Update → modificar producto
+
+✅ Delete → borrar (soft delete)
+
+Todo contra el JSON persistente.
+
+🧠 Arquitectura (muy importante)
+
+No mezclamos responsabilidades.
+
+HTTP (server.js)
+   ↓
+Service (productService.js)
+   ↓
+Persistencia (JSON)
+
+
+📌 El server no toca archivos
+📌 El service no sabe de HTTP
+
+
+

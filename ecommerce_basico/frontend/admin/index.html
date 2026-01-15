@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin | Ecommerce</title>
+  <link rel="stylesheet" href="/frontend/admin/stylesFrontAdmin.css">
+</head>
+<body>
+
+  <div class="admin-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <h2 class="logo">Admin</h2>
+
+      <nav>
+        <button class="nav-item active" data-section="products">
+          📦 Productos
+        </button>
+
+        <button class="nav-item" data-section="orders">
+          🧾 Órdenes
+        </button>
+      </nav>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main">
+
+      <!-- ===== PRODUCTOS ===== -->
+      <section id="section-products" class="section active">
+
+        <h1>Productos</h1>
+
+        <!-- FORMULARIO (tal cual lo tenías) -->
+        <section class="form-section">
+          <h2 id="form-title">Crear producto</h2>
+
+          <form id="product-form">
+            <input type="hidden" id="product-id" />
+
+            <input placeholder="Marca" id="brand" required />
+            <input placeholder="Modelo" id="model" required />
+            <input placeholder="Ancho" id="width" type="number" required />
+            <input placeholder="Perfil" id="profile" type="number" required />
+            <input placeholder="Rodado" id="rim" type="number" required />
+
+            <div class="row">
+              <input placeholder="Precio" id="price" type="number" required />
+              <input placeholder="Stock" id="stock" type="number" required />
+              <button type="submit">Guardar</button>
+              <button type="button" id="cancel-edit" hidden>Cancelar</button>
+            </div>
+
+
+          </form>
+        </section>
+
+        <!-- LISTADO -->
+        <section>
+          <h2>Listado</h2>
+          <div id="products" class="products-grid"></div>
+        </section>
+
+      </section>
+
+      <!-- ===== ÓRDENES ===== -->
+      <section id="section-orders" class="section">
+
+        <h1>Órdenes</h1>
+
+        <div class="orders-filters">
+          <button class="filter-btn active" data-status="all">Todas</button>
+          <button class="filter-btn" data-status="pending">Pendientes</button>
+          <button class="filter-btn" data-status="completed">Completadas</button>
+          <button class="filter-btn" data-status="cancelled">Canceladas</button>
+        </div>
+
+        <div id="orders" class="orders-grid"></div>
+
+      </section>
+
+    </main>
+
+  </div>
+
+  <!-- Modal para confirmacion y edicion de ordenes -->
+  <div id="order-modal" class="modal hidden">
+    <div class="modal-content">
+      <h2>Detalle de orden</h2>
+
+      <div id="order-detail"></div>
+
+      <div id="order-actions" class="modal-actions"></div>
+    </div>
+  </div>
+
+  <!-- FINAL -->
+  <div id="toast-container"></div>
+  <script src="/frontend/admin/scriptFrontAdmin.js"></script>
+</body>
+</html>

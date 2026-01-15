@@ -1,0 +1,71 @@
+[
+  {
+    "id": 1767815905109,
+    "brand": "Bridgestone",
+    "model": "Turanza T005",
+    "width": 215,
+    "profile": 55,
+    "rim": 17,
+    "price": 160,
+    "stock": 1,
+    "active": true,
+    "images": [
+      "/products/1767815905109/1.webp"
+    ]
+  },
+  {
+    "id": 1767827861670,
+    "brand": "Torque",
+    "model": "205/55/16",
+    "width": 205,
+    "profile": 55,
+    "rim": 16,
+    "price": 150,
+    "stock": 0,
+    "active": false
+  },
+  {
+    "id": 1767827875608,
+    "brand": "Torque",
+    "model": "255/65/17",
+    "width": 255,
+    "profile": 65,
+    "rim": 17,
+    "price": 190,
+    "stock": 1,
+    "active": true
+  },
+  {
+    "id": 1767827908763,
+    "brand": "Alliance",
+    "model": "210/55/16",
+    "width": 210,
+    "profile": 55,
+    "rim": 16,
+    "price": 120,
+    "stock": 2,
+    "active": true
+  },
+  {
+    "id": 1767875334647,
+    "brand": "Pirelli",
+    "model": "Cinturato",
+    "width": 205,
+    "profile": 55,
+    "rim": 16,
+    "price": 150,
+    "stock": 6,
+    "active": true
+  },
+  {
+    "id": 1767879774869,
+    "brand": "Pirelli",
+    "model": "Canon",
+    "width": 200,
+    "profile": 50,
+    "rim": 16,
+    "price": 180,
+    "stock": 9,
+    "active": true
+  }
+]

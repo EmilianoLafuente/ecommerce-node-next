@@ -1,0 +1,35 @@
+Excelente 🔥
+Esto que acabás de lograr no es menor:
+
+✔ Next 16 + App Router
+✔ SSR real con params async
+✔ Backend Express intacto
+✔ IDs largos funcionando
+✔ Migración real en marcha
+
+Ahora sí: elegimos el siguiente paso con criterio ecommerce, no al azar.
+
+----------------------------------------------------------------------------------------------
+
+🧠 LECCIÓN DE NIVEL ALTO (importante)
+
+Next está evolucionando hacia APIs cada vez más async
+porque todo el App Router está pensado para streaming, RSC y edge.
+
+Vos acabás de resolver un problema de versión moderna, no de principiante.
+
+----------------------------------------------------------------------------------------------
+
+🧠 POR QUÉ ESTÁ BIEN DISEÑADO (frontend/next/components/AddToCartButton.tsx)
+
+✔ "use client" solo acá
+✔ Usa useCart() (API limpia)
+✔ No depende de Product
+✔ Respeta stock máximo
+✔ Reutilizable en:
+
+listado
+detalle
+futuras promos
+
+----------------------------------------------------------------------------------------------

@@ -1,0 +1,68 @@
+🧭 Objetivo del FRONT ahora (muy claro)
+
+❌ No es una app web
+❌ No es React
+❌ No es bonito
+✅ Es observacional
+
+El front NO decide nada.
+Solo:
+
+muestra datos
+dispara acciones
+te deja ver qué hace el backend
+
+🧠 Regla de oro (importantísima)
+
+El frontend no conoce services ni modelos
+El frontend solo consume resultados
+
+Como todavía NO hay HTTP, el front va a:
+
+trabajar con datos mockeados
+simular respuestas
+ayudarte a visualizar flujos
+
+Después, cuando haya Express:
+
+este mismo front se conecta por fetch
+sin reescribir lógica
+
+🧠 Regla que vamos a respetar
+
+✅ Cards para mostrar
+❌ Cards para decidir lógica
+
+
+El front:
+
+renderiza productos
+muestra precios / stock
+dispara acciones
+
+El backend:
+
+valida
+calcula
+confirma
+
+Si respetás eso → podés usar cards sin problema.
+
+🟢 Qué SÍ hacer con cards
+
+✔ Mostrar datos del producto
+✔ Botón “Agregar al carrito”
+✔ Mostrar cantidad agregada
+✔ Mostrar subtotal / total
+
+Todo eso es UI, no negocio.
+
+
+🔴 Qué NO hacer en el front (todavía) 8/1/26
+
+❌ Validar stock real
+❌ Calcular totales “oficiales”
+❌ Confirmar lógica de compra
+❌ Manejar estados complejos
+
+Eso ya lo resolviste en backend, y está bien así.

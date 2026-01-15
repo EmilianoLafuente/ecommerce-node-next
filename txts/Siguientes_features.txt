@@ -1,0 +1,43 @@
+🧭 Ruta técnica recomendada (muy concreta)
+FASE 1 — (ahora) 8/1/26
+
+Controllers
+Mejor manejo de errores
+Admin Orders
+
+Status:
+✅ Checklist final FASE 1 (COMPLETA)
+
+✔️ Controllers desacoplados
+✔️ Parseo de body centralizado
+✔️ Errores tipados
+✔️ Status codes reales
+✔️ API consistente
+✔️ Express-ready
+✔️ Frontend estable
+
+👉 FASE 1 TERMINADA 🟢
+
+
+FASE 2 9/1/26
+
+Repositories
+Auth básica
+Express (migración suave)
+
+Status: ??
+
+FASE 3
+
+DB real
+Front con framework
+API versionada (/api/v1)
+
+🟢 Próximo paso (elegí uno)
+
+Para seguir ordenados:
+
+1️⃣ Te diseño controllers + estructura exacta
+2️⃣ Te propongo la capa repository aplicada a un service
+3️⃣ Diseñamos la API pensando en React / Next
+4️⃣ Migramos mentalmente a Express (sin escribir Express aún)

@@ -1,0 +1,202 @@
+Perfecto. Este es el paso correcto y el momento justo.
+Vamos a formalizar tu API como producto, sin cambiar framework ni romper nada.
+
+Voy a hacerlo en 4 bloques claros:
+
+Convenciones base de la API
+
+Contrato de endpoints (shop + admin)
+
+Formato estándar de respuestas
+
+Errores y status HTTP
+
+Nada de código todavía: primero criterio.
+
+🧱 PASO 1 — FORMALIZAR API (NODE PURO)
+1️⃣ Convenciones base (reglas del juego)
+
+Estas reglas aplican a todo el backend.
+
+🔹 Prefijo
+/api
+
+
+Futuro:
+
+/api/v1
+
+🔹 Formato
+
+Solo JSON
+
+UTF-8
+
+Sin HTML
+
+Sin lógica de UI
+
+🔹 Tiempo
+
+Backend: ISO UTC (createdAt, history.at)
+
+Frontend decide cómo mostrar
+
+✔️ Ya lo cumplís.
+
+🔹 Autoridad
+
+El backend define el estado, no el frontend.
+
+✔️ Ya lo cumplís.
+
+2️⃣ Contrato de endpoints
+🛒 SHOP (público)
+🔹 Listar productos
+GET /api/products
+
+
+Response 200
+
+{
+  "data": [
+    {
+      "id": 1,
+      "title": "Mouse",
+      "price": 1200,
+      "stock": 8
+    }
+  ]
+}
+
+🔹 Crear orden
+POST /api/orders
+
+
+Body
+
+{
+  "items": [
+    { "productId": 1, "quantity": 2 }
+  ]
+}
+
+
+Response 201
+
+{
+  "data": {
+    "id": 15,
+    "status": "pending",
+    "total": 2400,
+    "createdAt": "2026-01-09T14:22:01.000Z"
+  }
+}
+
+3️⃣ ADMIN (privado)
+🔐 Login
+POST /api/admin/login
+
+
+Response 200
+
+{
+  "data": {
+    "token": "abc123",
+    "role": "admin"
+  }
+}
+
+📦 Productos
+Listar
+GET /api/admin/products
+
+Crear
+POST /api/admin/products
+
+Editar
+PUT /api/admin/products/:id
+
+Stock
+PATCH /api/admin/products/:id/stock
+
+🧾 Órdenes
+Listar
+GET /api/admin/orders?status=pending
+
+Detalle
+GET /api/admin/orders/:id
+
+
+Response
+
+{
+  "data": {
+    "id": 15,
+    "status": "pending",
+    "total": 2400,
+    "items": [],
+    "history": [
+      { "status": "pending", "at": "2026-01-09T14:22:01.000Z" }
+    ]
+  }
+}
+
+Cambiar estado
+PATCH /api/admin/orders/:id/status
+
+
+Body
+
+{
+  "status": "completed"
+}
+
+4️⃣ Formato estándar de respuestas
+✅ Éxito
+{
+  "data": ...
+}
+
+
+Opcional:
+
+{
+  "data": ...,
+  "meta": { "total": 10 }
+}
+
+❌ Error
+{
+  "error": {
+    "code": "ORDER_CLOSED",
+    "message": "Order cannot be modified"
+  }
+}
+
+5️⃣ Status HTTP (muy importante)
+Caso	Status
+OK	200
+Created	201
+Bad input	400
+Unauthorized	401
+Forbidden	403
+Not found	404
+Business rule	409
+Server error	500
+
+Ejemplo:
+
+Orden cerrada → 409 Conflict
+
+🧠 Resultado de este paso
+
+Después de esto:
+
+Tu backend ya es una API profesional
+
+React / Next puede consumirla sin cambios futuros
+
+Express será solo infraestructura
+
+El contrato queda claro y estable

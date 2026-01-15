@@ -1,0 +1,20 @@
+🧠 Decisiones importantes para ordenes (bien pensadas)
+✔️ No se devuelve stock al cancelar
+
+Eso:
+
+es realista
+evita efectos colaterales
+se puede agregar después como feature
+
+✔️ Estados explícitos
+
+Nada de strings libres → backend sólido.
+
+✔️ PATCH (no PUT)
+
+Porque:
+
+solo cambia una parte
+semántica correcta HTTP
+muy bien visto en entrevistas

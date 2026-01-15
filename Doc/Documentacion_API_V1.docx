@@ -1,0 +1,197 @@
+? API v1 — Ecommerce Backend
+Base URL
+/api/v1
+Formato de respuesta estándar (SUCCESS)
+{
+  "data": <payload>
+}
+Formato de error estándar
+{
+  "error": "mensaje descriptivo"
+}
+Autenticación (Admin)
+Todas las rutas /admin/* requieren header:
+Authorization: Bearer admin-token-simple
+Content-Type: application/json
+
+? SHOP — Productos (Público)
+? Obtener productos activos
+GET /products
+Response 200
+{
+  "data": [
+    {
+      "id": 1767815905109,
+      "brand": "Bridgestone",
+      "model": "Turanza T005",
+      "width": 215,
+      "profile": 55,
+      "rim": 17,
+      "price": 160,
+      "stock": 7,
+      "active": true
+    }
+  ]
+}
+
+? Obtener producto por ID
+GET /products/:id
+Response 200
+{
+  "data": {
+    "id": 1767815905109,
+    "brand": "Bridgestone",
+    "model": "Turanza T005",
+    "price": 160,
+    "stock": 7
+  }
+}
+
+? SHOP — Órdenes (Público)
+? Crear orden (confirmar compra)
+POST /orders
+Body
+[
+  {
+    "id": 1767815905109,
+    "quantity": 2
+  }
+]
+Response 201
+{
+  "data": {
+    "id": 1767900000000,
+    "items": [
+      {
+        "productId": 1767815905109,
+        "description": "Bridgestone Turanza T005",
+        "price": 160,
+        "quantity": 2
+      }
+    ],
+    "total": 320,
+    "status": "pending",
+    "createdAt": "2026-01-14T12:30:00.000Z",
+    "history": [
+      {
+        "status": "pending",
+        "at": "2026-01-14T12:30:00.000Z"
+      }
+    ]
+  }
+}
+
+? ADMIN — Autenticación
+? Login admin
+POST /admin/login
+Body
+{
+  "user": "admin",
+  "pass": "1234"
+}
+Response 200
+{
+  "data": {
+    "token": "admin-token-simple"
+  }
+}
+
+? ADMIN — Productos
+? Listar todos los productos (activos e inactivos)
+GET /admin/products
+Response 200
+{
+  "data": [ ...productos... ]
+}
+
+? Crear producto
+POST /admin/products
+Body
+{
+  "brand": "Michelin",
+  "model": "Primacy 4",
+  "width": 205,
+  "profile": 55,
+  "rim": 16,
+  "price": 180,
+  "stock": 10
+}
+Response 201
+{
+  "data": { ...producto creado... }
+}
+
+? Actualizar producto
+PUT /admin/products/:id
+Body
+{
+  "price": 190,
+  "stock": 15
+}
+
+? Borrado lógico de producto
+DELETE /admin/products/:id
+Response 200
+{
+  "data": {
+    "success": true
+  }
+}
+
+? Aumentar stock
+POST /admin/products/:id/stock
+Body
+{
+  "quantity": 5
+}
+
+? ADMIN — Órdenes
+? Listar órdenes
+GET /admin/orders
+Response 200
+{
+  "data": [ ...órdenes... ]
+}
+
+? Ver detalle de orden
+GET /admin/orders/:id
+Response 200
+{
+  "data": {
+    "id": 1767900000000,
+    "items": [ ... ],
+    "total": 320,
+    "status": "pending",
+    "createdAt": "2026-01-14T12:30:00.000Z",
+    "history": [
+      { "status": "pending", "at": "2026-01-14T12:30:00.000Z" }
+    ]
+  }
+}
+
+? Cambiar estado de orden
+PATCH /admin/orders/:id/status
+Body
+{
+  "status": "completed"
+}
+Estados válidos:
+    • pending
+    • completed
+    • cancelled
+
+? Reglas de negocio (API-level)
+    • Órdenes pending pueden:
+        ? pasar a completed ? consume stock
+        ? pasar a cancelled ? devuelve stock
+    • Órdenes cerradas NO pueden modificarse
+    • Backend valida stock, estados y consistencia
+    • Fechas se guardan en UTC ISO 8601
+
+? Estado de la API v1
+?? Contrato estable
+?? Versionada
+?? Compatible con React / Next
+?? Backend manda, frontend obedece
+?? Lista para Swagger / OpenAPI
+

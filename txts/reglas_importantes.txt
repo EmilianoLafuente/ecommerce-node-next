@@ -1,0 +1,272 @@
+🧠 Regla importante (guardala)
+
+Los IDs son para el sistema, no para el usuario
+Si el usuario tiene que pensar en IDs → algo está mal en la UX, no en el backend.
+
+-----------------------------------------------------------------------------------
+
+🧩 Separación de responsabilidades (regla de oro)
+🟦 productService.js (BACKEND)
+
+Vive en Node
+Usa fs
+Lee / escribe JSON
+No sabe nada del DOM
+No sabe nada del navegador
+No usa fetch
+
+👉 Nunca se importa en el frontend.
+
+🟨 frontend/script.js (FRONTEND)
+
+Vive en el navegador
+Usa fetch
+Maneja eventos UI
+Pide datos al backend
+No accede a archivos
+No tiene lógica de negocio
+
+👉 Nunca toca el JSON directamente.
+
+-----------------------------------------------------------------------------------
+
+🧠 Regla de oro para tu carrera (guardala)
+
+Quien domina APIs, domina la integración entre sistemas
+
+Y eso:
+
+no depende de React
+no depende de Express
+no depende de frameworks
+
+Depende de:
+HTTP
+diseño
+separación de capas
+
+-----------------------------------------------------------------------------------
+
+🧠 QUÉ APRENDISTE ACÁ (ESTO ES ORO)
+✔ 1️⃣ El body HTTP puede venir vacío
+
+Aunque el frontend “crea” que lo envió
+
+✔ 2️⃣ JSON.parse() no perdona
+
+Un string vacío = crash inmediato
+
+✔ 3️⃣ El backend debe ser defensivo
+
+Nunca asumir:
+que hay body
+que el JSON es válido
+que los datos son correctos
+
+✔ 4️⃣ Esto no es un bug, es una lección
+
+Te pasó porque estás usando Node real, no magia
+
+🧠 EJEMPLO MENTAL (GUARDALO)
+
+Pensá el backend así:
+
+“Todo request es sospechoso hasta que se demuestre lo contrario”
+
+Por eso validamos:
+existe body
+es JSON válido
+los campos existen
+los valores tienen sentido
+
+recién ahí ejecutamos lógica de negocio
+
+🏁 RESUMEN FINAL
+
+El error no estaba en el stock
+
+No estaba en la ruta
+No estaba en la DB
+
+👉 Estaba en intentar parsear JSON cuando no había JSON
+
+Lo solucionaste como se hace en producción.
+
+-----------------------------------------------------------------------------------
+
+🧠 Regla de oro (grabátela)
+
+Si existe un controller, server.js NO puede llamar al service.
+
+server.js solo:
+
+enruta
+delega
+
+-----------------------------------------------------------------------------------
+🧠 Regla clave
+
+Un service puede tener funciones “grandes” (casos de uso)
+y funciones “chicas” (operaciones de dominio)
+
+-----------------------------------------------------------------------------------
+
+🧠 ¿Qué significa “bloquear una orden”?
+
+Bloquear una orden NO es un capricho de UX.
+Significa esto:
+
+👉 La orden ya llegó a un estado FINAL
+y no puede volver atrás sin un proceso especial.
+
+-----------------------------------------------------------------------------------
+
+🧠 Regla de oro que te llevás
+
+Una orden no es un botón, es un proceso.
+Y todo proceso tiene estados finales.
+
+-----------------------------------------------------------------------------------
+
+🧠 Regla de oro que te llevás
+
+Los modelos NO imponen reglas de negocio finales.
+Solo representan el estado actual.
+
+Las reglas viven en:
+
+services
+controllers
+flujos
+
+-----------------------------------------------------------------------------------
+
+📌 Regla de oro que te llevás
+
+🕒 Guardá fechas en UTC
+👁️ Mostralas en horario local
+
+Nunca al revés.
+
+-----------------------------------------------------------------------------------
+
+🧠 Regla de oro (muy importante)
+
+El stock se descuenta cuando se crea la orden
+El stock se devuelve solo si la orden se cancela y estaba pendiente
+
+Nunca:
+
+devolver stock de una orden completed
+devolver stock dos veces
+
+-----------------------------------------------------------------------------------
+
+🧠 Diseño correcto (antes de escribir código)
+Regla clave
+
+El historial pertenece a la orden
+No es otra entidad, no es otra tabla.
+
+Entonces:
+
+Se guarda dentro de la orden
+Como un array
+
+-----------------------------------------------------------------------------------
+
+🔑 Conclusión clara
+
+Exponer una API para React / Next no es cambiar tecnología,
+es formalizar el backend como producto.
+
+-----------------------------------------------------------------------------------
+
+🧠 Regla profesional (muy importante)
+
+Si cambiás de framework y rompés la API, la API estaba mal diseñada.
+
+Tu objetivo es:
+
+Cambiar infraestructura
+
+sin romper clientes
+
+-----------------------------------------------------------------------------------
+
+🧠 La idea clave (quedate con esto)
+
+Las versiones NO se “manejan”, se diseñan desde el día 1.
+
+Y sí:
+
+Conviene crear /api/v1 ahora, aunque no exista v2.
+
+-----------------------------------------------------------------------------------
+
+🧠 Regla de oro
+
+Versionar tarde es caro. Versionar temprano es gratis.
+
+-----------------------------------------------------------------------------------
+
+🧱 Diseño correcto de rutas (definitivo)
+📌 Regla base
+
+Todo lo que es API va bajo /api/v1
+Nada más responde JSON
+
+-----------------------------------------------------------------------------------
+
+🔑 Regla de oro (muy importante)
+
+Nunca compartas código de config entre backend y frontend.
+Compartís contratos, no archivos.
+
+Vos hiciste bien en preguntarlo antes de intentar “reutilizar”.
+
+-----------------------------------------------------------------------------------
+
+🧠 FRASE PARA RECORDAR (guardala)
+
+Hicimos esto para que el backend sea una API estable, versionada y desacoplada, no para “cambiar rutas”.
+
+-----------------------------------------------------------------------------------
+
+🧱 NUEVA ESTRUCTURA (mínima y limpia)
+/src
+ ├─ app.js          ← Express + rutas
+ ├─ server.js       ← solo escucha el puerto
+ ├─ config/
+ │   └─ api.js
+ ├─ controllers/
+ ├─ services/
+ ├─ models/
+ ├─ utils/
+ └─ frontend/
+
+ -----------------------------------------------------------------------------------
+
+ 🔑 Frase para recordar (muy importante)
+
+Con Node puro, el controller maneja el stream.
+Con Express, el controller maneja datos ya procesados.
+
+✅ Conclusión corta
+
+getBody(req) → necesario solo en Node puro
+req.body → estándar en Express
+
+Cambiamos porque cambió la responsabilidad, no la lógica
+La decisión es correcta y necesaria
+
+ -----------------------------------------------------------------------------------
+
+ 🧠 LECCIÓN DE NIVEL ALTO (importante)
+
+Next está evolucionando hacia APIs cada vez más async
+porque todo el App Router está pensado para streaming, RSC y edge.
+
+Vos acabás de resolver un problema de versión moderna, no de principiante.
+
+ -----------------------------------------------------------------------------------

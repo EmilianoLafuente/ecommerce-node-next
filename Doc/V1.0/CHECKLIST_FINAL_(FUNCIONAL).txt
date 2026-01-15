@@ -1,0 +1,30 @@
+15/1/26
+
+Backend (Node + Express)
+
+✅ API versionada /api/v1
+✅ Arquitectura en capas (controllers / services / models)
+✅ Persistencia en JSON (simulación DB)
+✅ Reglas de negocio cerradas
+✅ Validación de stock en backend
+✅ Descuento y restauración de stock
+✅ Órdenes persistidas correctamente
+✅ Historial de estados con timestamps
+✅ Normalización defensiva de datos legacy
+✅ Manejo de errores consistente
+✅ CORS configurado correctamente
+
+Frontend (Next.js App Router)
+
+✅ SSR para catálogo y detalle
+✅ Navegación por rutas dinámicas
+✅ Carrito con estado global (Context + Reducer)
+✅ Persistencia en localStorage
+✅ UX correcta de carrito
+✅ Checkout funcional
+✅ Manejo de errores de compra
+✅ Estado explícito de checkout exitoso
+✅ Frontend desacoplado del backend
+✅ Contrato API respetado
+
+📌 Resultado: flujo ecommerce completo end-to-end.

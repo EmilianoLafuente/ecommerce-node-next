@@ -1,0 +1,39 @@
+📌 Separación clara:
+
+cart/ → lógica
+components/ → UI
+app/cart → página
+
+--------------------------------------------------------------
+
+2️⃣ ¿Client Component? — Sí, pero controlado
+
+El carrito NECESITA estado
+
+Estado = "use client"
+
+Pero:
+NO convertimos todo en client
+
+Solo:
+CartContext
+botones
+
+resumen
+El catálogo y el detalle siguen siendo Server Components.
+
+--------------------------------------------------------------
+🧠 EXPLICACIÓN CLAVE (CArtContext.tsx)
+✔ Por qué esto está bien diseñado
+
+useReducer → lógica centralizada
+Context → acceso global
+useCart() → API limpia
+localStorage → persistencia
+"use client" → solo donde hace falta
+
+❌ Qué evitamos
+
+pasar props por todos lados
+lógica duplicada
+dependencias innecesarias
