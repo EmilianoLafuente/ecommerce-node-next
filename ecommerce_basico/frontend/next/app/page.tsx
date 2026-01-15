@@ -1,19 +1,16 @@
-// app/page.tsx
 
-import Link from 'next/link'
+
+import Container from '@/components/layout/Container'
+import ProductGrid from '@/components/product/ProductGrid'
 import { getProducts } from '@/services/products.service'
-import ProductCard from '@/components/ProductCard'
 
 export default async function HomePage() {
   const products = await getProducts()
 
   return (
-    <main style={{ padding: '2rem' }}>
-      <h1>Productos</h1>
-
-      {products.map(product => (
-        <ProductCard key={product.id} product={product} />
-      ))}
-    </main>
+    <Container>
+      <h1 className="page-title">Productos</h1>
+      <ProductGrid products={products} />
+    </Container>
   )
 }

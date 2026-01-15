@@ -12,7 +12,7 @@ export type Product = {
   price: number
   stock: number
   active: boolean
-  images: string[]   // 👈 clave
+  images: string[]
 }
 
 export async function getProducts(): Promise<Product[]> {
